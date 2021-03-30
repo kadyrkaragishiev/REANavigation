@@ -6,6 +6,7 @@ using UnityEngine.UI;
 	public class UIDebug : MonoBehaviour
 	{
 		private static UIDebug instance;
+		public Text t;
 		public static UIDebug getInstance()
 		{
 			if (instance == null)
@@ -19,30 +20,15 @@ using UnityEngine.UI;
 		}
 
 
-		Text t;
 		List<string> lines = new List<string>();
 		private void Awake()
 		{
 			instance = this;
-			t = new GameObject("Text", typeof(Text)).GetComponent<Text>();
-			t.transform.localScale = Vector3.one;
-			t.transform.SetParent(transform);
-			RectTransform rt = t.GetComponent<RectTransform>();
-			rt.anchorMax = new Vector2(0, 0);
-			rt.anchorMin = new Vector2(0, 0);
-			rt.sizeDelta = new Vector2(640, 170);
-			rt.anchoredPosition = new Vector2(320, 85);
-			t.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-			t.fontStyle = FontStyle.Bold;
-			t.color = Color.white;
-			t.resizeTextForBestFit = true;
-			t.resizeTextMinSize = 5;
-			t.resizeTextMaxSize = 12;
 		}
 
 		public void printText(string line)
 		{
-			if (lines.Count > 9)
+			if (lines.Count > 14)
 			{
 				lines.RemoveAt(0);
 			}
