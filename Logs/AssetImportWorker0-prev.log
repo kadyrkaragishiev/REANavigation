@@ -1,0 +1,98 @@
+Using pre-set license
+Built from '2020.3/release' branch; Version is '2020.3.2f1 (8fd9074bf66c) revision 9427207'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19041.867; Version 2004; 64bit' Language: 'ru' Physical Memory: 8087 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\UsingFiles\UnityVers\2020.3.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/UsingFiles/Production/ReaNav
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+49676
+Successfully changed project path to: C:/UsingFiles/Production/ReaNav
+C:/UsingFiles/Production/ReaNav
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 64.12 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.2f1 (8fd9074bf66c)
+[Subsystems] Discovering subsystems at path C:/UsingFiles/UnityVers/2020.3.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/UsingFiles/Production/ReaNav/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 940MX (ID=0x134b)
+    Vendor:   
+    VRAM:     987 MB
+    Driver:   27.21.14.5638
+Initialize mono
+Mono path[0] = 'C:/UsingFiles/UnityVers/2020.3.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/UsingFiles/UnityVers/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/UsingFiles/UnityVers/2020.3.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56304
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/UsingFiles/UnityVers/2020.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004478 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 187.63 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.703 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.003595 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 268.86 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in 20.072 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 1.40 seconds
+Refreshing native plugins compatible for Editor in 1.28 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1735 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 78.2 MB.
+System memory in use after: 78.2 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2182.
+Total: 3.986600 ms (FindLiveObjects: 0.494500 ms CreateObjectMapping: 0.152700 ms MarkObjects: 3.206700 ms  DeleteObjects: 0.130700 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/TheAudience.cs
+  artifactKey: Guid(03884f29dbf385440a55c6c9e25ef1da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TheAudience.cs using Guid(03884f29dbf385440a55c6c9e25ef1da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa467b32d7a8a0dd46b479eadfba0844') in 0.171428 seconds
+  Import took 0.223867 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.194339 seconds.
+  path: Assets/Scripts/UIController.cs
+  artifactKey: Guid(1163a99eb38b26b4c8eca4778dc00d1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/UIController.cs using Guid(1163a99eb38b26b4c8eca4778dc00d1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e649ec0ddbafb0adf13c60457f4252e') in 0.223983 seconds
+  Import took 0.238225 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.076249 seconds.
+  path: Assets/Scripts/SearchPanel.cs
+  artifactKey: Guid(7098a1a9be44c00489818c9fd96ba3d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SearchPanel.cs using Guid(7098a1a9be44c00489818c9fd96ba3d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0363fa2d536e6f75678295672f67814e') in 0.051339 seconds
+  Import took 0.058917 seconds .
+

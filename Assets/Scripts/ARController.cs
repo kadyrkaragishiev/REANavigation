@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 public class ARController : MonoBehaviour
 {
+    [SerializeField] private GameObject AR;
     [SerializeField] ARSession _session;
-    [SerializeField] private ARCameraManager _arCameraManager;
+    [SerializeField] private GameObject _camera;
     bool isSupported;
     private void Start()
     {
         StartCoroutine(SessionCheck());
+        Invoke("StartSession", 1f);
     }
     public void StartSession()
     {
@@ -19,14 +22,14 @@ public class ARController : MonoBehaviour
             UIDebug.Log("session started!");
             if (!_session.isActiveAndEnabled)
             {
-                _arCameraManager.gameObject.SetActive(true);
                 _session.enabled = true;
+                _camera.SetActive(false);
             }
             else
             {
                 UIDebug.Log("session stopped!");
-                _arCameraManager.gameObject.SetActive(false);
                 _session.enabled = false;
+                _camera.SetActive(true);
             }
         }
     }
@@ -47,5 +50,23 @@ public class ARController : MonoBehaviour
             isSupported = true;
         }
 
+    }
+}
+
+public static class ARInterface
+{
+    public delegate void OnStartPointChange(Vector3 pos);
+    public static event OnStartPointChange onStartPointChange;
+
+    public static void StartPointChange(Vector3 position)
+    {
+        onStartPointChange?.Invoke(position);
+    }
+    public delegate void OnEndPointChange(Vector3 pos);
+    public static event OnEndPointChange onEndPointChange;
+
+    public static void EndPointChange(Vector3 position)
+    {
+        onEndPointChange?.Invoke(position);
     }
 }

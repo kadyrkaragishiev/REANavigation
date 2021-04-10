@@ -11,6 +11,13 @@ public class UIController : MonoBehaviour
     public Ease _showEase;
     public ARController _ar;
     public CreatePath _createPath;
+
+    void Start()
+    {
+        ARInterface.onStartPointChange += SetStartPoint;
+        ARInterface.onEndPointChange += SetEndPoint;
+    }
+
     public void OnViewTap()
     {
         if (IsHide)
@@ -20,18 +27,29 @@ public class UIController : MonoBehaviour
         }
         else
         {
-            DOTween.To(() => _SearchPanel.rectTransform.anchoredPosition, x => _SearchPanel.rectTransform.anchoredPosition= x, new Vector2(0,-3600f), 1).SetEase(_hideEase);
+            DOTween.To(() => _SearchPanel.rectTransform.anchoredPosition,
+                x => _SearchPanel.rectTransform.anchoredPosition = x, new Vector2(0, -2200f), 1).SetEase(_hideEase);
             IsHide = true;
         }
     }
+
     public void SetStartPoint()
     {
-        _createPath.transform.position = _createPath._setPoint;
+        ARInterface.StartPointChange(_createPath._setPoint);
+        UIDebug.Log("startPointUI");
+    }
+    public void SetStartPoint(Vector3 pos)
+    {
+        _createPath.transform.position = pos;
     }
     public void SetEndPoint()
     {
+        ARInterface.EndPointChange(_createPath._setPoint);
         _createPath._endPoint._pointPosition = _createPath._setPoint;
-        _createPath.SetPath();
+    }
+    public void SetEndPoint(Vector3 pos)
+    {
+        _createPath._endPoint._pointPosition = pos;
     }
     public void OpenSession(){
     }

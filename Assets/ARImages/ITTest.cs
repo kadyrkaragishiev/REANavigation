@@ -12,9 +12,10 @@ public class ITTest : MonoBehaviour
     public ARTrackedImageManager manager;
     public TextMeshProUGUI TextAbout;
     public TheAudience[] audiences;
-    public CreatePath createPath;
+    public UIController _Ui;
     private Dictionary<int, TheAudience> viewPanels = new Dictionary<int, TheAudience>();
-    
+    public int currentAudienceId;
+
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(1f);
@@ -42,15 +43,21 @@ public class ITTest : MonoBehaviour
                 if (trackedImage != _lastTracked)
                 {
                     _lastTracked = trackedImage;
-                    int f = int.Parse(trackedImage.referenceImage.name);
-                    GetInformation(viewPanels[f]);
-                    createPath.transform.position = viewPanels[f]._point.position;
+                    int currentAudienceId = int.Parse(trackedImage.referenceImage.name);
+                    GetInformation(viewPanels[currentAudienceId]);
+                    ARInterface.onStartPointChange += OnStartPointChange;
+                    // _Ui.SetStartPoint(viewPanels[f]._point.position);
                     break;
                 }
             }
         }
     }
+    public void OnStartPointChange(Vector3 pos)
+    {
+        UIDebug.Log("Changed position");
+    }
     void GetInformation(TheAudience audience){
         
     }
 }
+

@@ -46,10 +46,11 @@ using UnityEngine.UI;
 		{
 #if true
 		getInstance().printText("[" + Time.time.ToString("0.0") + "] " + line.ToString());
+		Debug.Log(line);
 #else
 		Debug.Log("UIDebug is disable. " + "[" + Time.time.ToString("0.0") + "] " + line.ToString());
 #endif
-    }
+		}
 }
 	public static class Caller
 	{
