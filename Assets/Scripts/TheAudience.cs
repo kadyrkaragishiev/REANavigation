@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TheAudience : MonoBehaviour
 {
-    private int audienceCampus;
-    private int audienceFloor;
-    
+    [SerializeField] private int audienceCampus;
+    [SerializeField] private int audienceFloor;
 
     public string[] name_list;
     public int audienceNumber;
+
     public Transform[] enterPoint;
     public Transform _point;
     public int AudienceFloor { get => audienceFloor; set => audienceFloor = value; }

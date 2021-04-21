@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 public class UIController : MonoBehaviour
 {
     public Image _SearchPanel;
     private bool IsHide = true;
     public Ease _hideEase;
     public Ease _showEase;
-    public ARController _ar;
     public CreatePath _createPath;
+
+    public event EventHandler OnPositionChanged;
 
     void Start()
     {
-        ARInterface.onStartPointChange += SetStartPoint;
-        ARInterface.onEndPointChange += SetEndPoint;
     }
 
     public void OnViewTap()
@@ -33,24 +33,20 @@ public class UIController : MonoBehaviour
         }
     }
 
+    #region WorkWithPoints
     public void SetStartPoint()
     {
-        ARInterface.StartPointChange(_createPath._setPoint);
+        _createPath.transform.position = _createPath._setPoint;
         UIDebug.Log("startPointUI");
     }
-    public void SetStartPoint(Vector3 pos)
+    public void OnButtonTap()
     {
-        _createPath.transform.position = pos;
+        OnPositionChanged?.Invoke(this, EventArgs.Empty);
     }
     public void SetEndPoint()
     {
-        ARInterface.EndPointChange(_createPath._setPoint);
         _createPath._endPoint._pointPosition = _createPath._setPoint;
+        UIDebug.Log("endPointUI");
     }
-    public void SetEndPoint(Vector3 pos)
-    {
-        _createPath._endPoint._pointPosition = pos;
-    }
-    public void OpenSession(){
-    }
+    #endregion
 }

@@ -45,7 +45,7 @@ public class ITTest : MonoBehaviour
                     _lastTracked = trackedImage;
                     int currentAudienceId = int.Parse(trackedImage.referenceImage.name);
                     GetInformation(viewPanels[currentAudienceId]);
-                    ARInterface.onStartPointChange += OnStartPointChange;
+                    //ARInterface.onStartPointChange += OnStartPointChange;
                     // _Ui.SetStartPoint(viewPanels[f]._point.position);
                     break;
                 }
