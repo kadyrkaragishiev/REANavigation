@@ -28,7 +28,12 @@ public class CreatePath : MonoBehaviour
     }
     public void SetPath(object sender, EventArgs e)
     {
-        UIDebug.Log("pos");
+        nav.SetDestination(_endPoint._pointPosition);
+        Invoke("CalculatePath", 0.5f);
+
+    }
+    private void CalculatePath()
+    {
         if (_endPoint._pointPosition != null)
         {
             path = nav.path;
@@ -48,66 +53,48 @@ public class CreatePath : MonoBehaviour
     }
     private void Update()
     {
-//#if UNTIY_EDITOR
-        if (Input.GetKeyDown(KeyCode.W))
+        //#if UNTIY_EDITOR
+        if (Input.GetButtonDown("Fire1"))
         {
-            cam.transform.position += new Vector3(0, 0, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            cam.transform.position += new Vector3(0, 0, -1);
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            cam.transform.position += new Vector3(-1, 0, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            cam.transform.position += new Vector3(1, 0, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            cam.transform.position += new Vector3(0, 1, 0);
-        }
-       if (Input.GetButtonDown("Fire1"))
-       {
-           Debug.Log("Mouse");
-           Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-           RaycastHit hit;
-           if (Physics.Raycast(ray,out hit,Mathf.Infinity))
-           {
-               if(EventSystem.current.IsPointerOverGameObject())
-               {
-                  return;
-               }   
-               else{
+            RaycastHit hit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            ray.direction *= 20f;
+            Debug.DrawRay(ray.origin, ray.direction*20f);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return;
+                }
+                else
+                {
                     place_point.transform.position = hit.point;
-                   _setPoint = hit.point;
-               }
-           }
-       }
-//#elif UNITY_ANDROID
-//        Debug.Log("andr");
-//       if (Input.touchCount > 0 )
-//        {
-//            UIDebug.Log("C");
-//            Touch t = Input.GetTouch(0);
-//            RaycastHit hit;
-//            Ray ray = cam.ScreenPointToRay(t.position);
-//            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && t.phase == TouchPhase.Stationary)
-//            {
-//                if(EventSystem.current.IsPointerOverGameObject())
-//                {
-//                   return;
-//                }   
-//                else{
-//                     place_point.transform.position = hit.point;
-//                    _setPoint = hit.point;
-//                }
-                
-//            }
-//        }
-//        #endif
+                    _setPoint = hit.point;
+                }
+            }
+        }
+        //#elif UNITY_ANDROID
+        //        Debug.Log("andr");
+        //       if (Input.touchCount > 0 )
+        //        {
+        //            UIDebug.Log("C");
+        //            Touch t = Input.GetTouch(0);
+        //            RaycastHit hit;
+        //            Ray ray = cam.ScreenPointToRay(t.position);
+        //            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && t.phase == TouchPhase.Stationary)
+        //            {
+        //                if(EventSystem.current.IsPointerOverGameObject())
+        //                {
+        //                   return;
+        //                }   
+        //                else{
+        //                     place_point.transform.position = hit.point;
+        //                    _setPoint = hit.point;
+        //                }
+
+        //            }
+        //        }
+        //        #endif
 
     }
 }

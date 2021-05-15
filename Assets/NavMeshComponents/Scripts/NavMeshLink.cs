@@ -21,6 +21,11 @@ namespace UnityEngine.AI
         public Vector3 endPoint { get { return m_EndPoint; } set { m_EndPoint = value; UpdateLink(); } }
 
         [SerializeField]
+        public Transform p1;
+        [SerializeField]
+        public Transform p2;
+
+        [SerializeField]
         float m_Width;
         public float width { get { return m_Width; } set { m_Width = value; UpdateLink(); } }
 
