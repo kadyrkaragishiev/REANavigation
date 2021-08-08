@@ -24,9 +24,8 @@ public class CreatePath : MonoBehaviour
 
     void Start()
     {
-        uIController.OnPositionChanged += SetPath;
     }
-    public void SetPath(object sender, EventArgs e)
+    public void SetPath()
     {
         nav.SetDestination(_endPoint._pointPosition);
         Invoke("CalculatePath", 0.5f);
@@ -53,7 +52,7 @@ public class CreatePath : MonoBehaviour
     }
     private void Update()
     {
-        //#if UNTIY_EDITOR
+#if UNTIY_EDITOR
         if (Input.GetButtonDown("Fire1"))
         {
             RaycastHit hit;
@@ -73,29 +72,39 @@ public class CreatePath : MonoBehaviour
                 }
             }
         }
-        //#elif UNITY_ANDROID
-        //        Debug.Log("andr");
-        //       if (Input.touchCount > 0 )
-        //        {
-        //            UIDebug.Log("C");
-        //            Touch t = Input.GetTouch(0);
-        //            RaycastHit hit;
-        //            Ray ray = cam.ScreenPointToRay(t.position);
-        //            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && t.phase == TouchPhase.Stationary)
-        //            {
-        //                if(EventSystem.current.IsPointerOverGameObject())
-        //                {
-        //                   return;
-        //                }   
-        //                else{
-        //                     place_point.transform.position = hit.point;
-        //                    _setPoint = hit.point;
-        //                }
+#elif UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            Touch t = Input.GetTouch(0);
+            RaycastHit hit;
+            Ray ray = cam.ScreenPointToRay(t.position);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && t.phase == TouchPhase.Stationary)
+            {
+                if (IsPointerOverUIObject(t.position))
+                {
+                    return;
+                }
+                else
+                {
+                    place_point.transform.position = hit.point;
+                    _setPoint = hit.point;
+                }
 
-        //            }
-        //        }
-        //        #endif
-
+            }
+        }
+#endif
+    }
+    bool IsPointerOverUIObject(Vector2 pos)
+    {
+        if (EventSystem.current == null)
+        {
+            return false;
+        }
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(pos.x, pos.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }
 public class Point

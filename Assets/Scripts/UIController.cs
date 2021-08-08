@@ -11,8 +11,7 @@ public class UIController : MonoBehaviour
     public Ease _hideEase;
     public Ease _showEase;
     public CreatePath _createPath;
-
-    public event EventHandler OnPositionChanged;
+    
 
     void Start()
     {
@@ -37,16 +36,14 @@ public class UIController : MonoBehaviour
     public void SetStartPoint()
     {
         _createPath.transform.position = _createPath._setPoint;
-        UIDebug.Log("startPointUI");
-    }
-    public void OnButtonTap()
-    {
-        OnPositionChanged?.Invoke(this, EventArgs.Empty);
+        _createPath.SetPath();
+
+        Debug.Log("changed");
     }
     public void SetEndPoint()
     {
         _createPath._endPoint._pointPosition = _createPath._setPoint;
-        UIDebug.Log("endPointUI");
+        _createPath.SetPath();
     }
     #endregion
 }
